@@ -18,7 +18,7 @@ while (True):
     cdst = cv.cvtColor(imgcut, cv.COLOR_GRAY2BGR)
     cdstP = np.copy(cdst)
 
-    lines = cv.HoughLines(dst, 1, np.pi / 180, 150, None, 0, 0)
+    lines = cv.HoughLines(imgcut, 1, np.pi / 180, 210, None, 0, 0)
 
     if lines is not None:
         for i in range(0, len(lines)):
@@ -32,7 +32,7 @@ while (True):
             pt2 = (int(x0 - 1000 * (-b)), int(y0 - 1000 * (a)))
             cv.line(cdst, pt1, pt2, (0, 0, 255), 3, cv.LINE_AA)
 
-    linesP = cv.HoughLinesP(dst, 1, np.pi / 180, 50, None, 50, 10)
+    linesP = cv.HoughLinesP(dst, 1, np.pi / 180, 150, None, 100, 10)
 
     if linesP is not None:
         for i in range(0, len(linesP)):
