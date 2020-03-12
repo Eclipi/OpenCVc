@@ -13,7 +13,8 @@ while (True):
 
     dst = cv.Canny(src, 50, 200, None, 3)
 
-    imgcut = dst[0:400, 0:400]
+# ROI setup
+    imgcut = dst[0:640, 0:480]
 
     cdst = cv.cvtColor(imgcut, cv.COLOR_GRAY2BGR)
     cdstP = np.copy(cdst)
@@ -31,6 +32,11 @@ while (True):
             pt1 = (int(x0 + 1000 * (-b)), int(y0 + 1000 * (a)))
             pt2 = (int(x0 - 1000 * (-b)), int(y0 - 1000 * (a)))
             cv.line(cdst, pt1, pt2, (0, 0, 255), 3, cv.LINE_AA)
+
+    # line basis
+    base_point1 = (150,0);
+    base_point2 = (150,1000);
+    cv.line(cdst, base_point1, base_point2, (0,255,0), 3, cv.LINE_AA);
 
     linesP = cv.HoughLinesP(dst, 1, np.pi / 180, 150, None, 100, 10)
 
