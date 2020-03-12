@@ -33,6 +33,8 @@ while (True):
             pt2 = (int(x0 - 1000 * (-b)), int(y0 - 1000 * (a)))
             cv.line(cdst, pt1, pt2, (0, 0, 255), 3, cv.LINE_AA)
 
+    print("the slope of the line is ", (pt1[0]-pt2[0])/(pt1[1]-pt2[1]))
+
     # line basis
     base_point1 = (150,0);
     base_point2 = (150,1000);
