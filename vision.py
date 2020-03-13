@@ -4,7 +4,10 @@ import math
 import cv2 as cv
 import numpy as np
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(0, cv.CAP_DSHOW)
+
+pt1 = [0,0];
+pt2 = [0,0];
 
 while (True):
     ret, src = cap.read()
@@ -32,8 +35,10 @@ while (True):
             pt1 = (int(x0 + 1000 * (-b)), int(y0 + 1000 * (a)))
             pt2 = (int(x0 - 1000 * (-b)), int(y0 - 1000 * (a)))
             cv.line(cdst, pt1, pt2, (0, 0, 255), 3, cv.LINE_AA)
-
-    print("the slope of the line is ", (pt1[0]-pt2[0])/(pt1[1]-pt2[1]))
+    try:
+        print("the slope of the line is ", (pt1[1]-pt2[1])/(pt1[0]-pt2[0]))
+    except ZeroDivisionError:
+        pass
 
     # line basis
     base_point1 = (150,0);
